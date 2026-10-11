@@ -74,6 +74,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.dlt/secrets.toml
 
 ### Python Patch ###
 # Poetry local configuration file - https://python-poetry.org/docs/configuration/#local-configuration
@@ -84,3 +85,6 @@ poetry.toml
 
 # LSP config files
 pyrightconfig.json
+
+# Test Files
+*.duckdb

@@ -23,7 +23,10 @@ pipeline = dlt.pipeline(
 pipeline.run(source)
 
 # 4. Run
-pipeline.dataset().frankfurter_api.df()
-
+test_df = pipeline.dataset().frankfurter_api.df()
+print(test_df.head(10))
+print(test_df.shape)
+print(test_df["_dlt_load_id"].nunique())
+print(test_df["date"].nunique())
 
 # https://api.frankfurter.dev/v2/providers/ecb/rates?from=2026-10-01
