@@ -5,7 +5,7 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12, <3.13"
 dependencies = [
-    "dlt>=1.31.0",
+    "dlt[bigquery]>=1.31.0",
     "sqlglot==28.0.0",
 ]
 
