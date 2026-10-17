@@ -5,7 +5,7 @@ from dlt.common.pipeline import LoadInfo
 
 ## Connection parameters (READ function)
 BASE_URL = "https://api.frankfurter.dev/v2/providers/ecb"
-RESOURCE_NAME = "frankfurter_ecb_rates"
+RESOURCE_NAME = "ecb_rates"
 PRIMARY_KEY = ["date", "quote"]
 PATH = "rates"
 CURSOR_PATH = "date"
@@ -13,7 +13,7 @@ INITIAL_VALUE = "2026-01-01"
 
 ## Pipeline parameters (LOAD function)
 PIPELINE_NAME = "frankfurter"
-DATASET_NAME = "eur_exchange_rates"
+DATASET_NAME = "raw_frankfurter"
 
 
 def read_frankfurter_ecb_rates() -> DltSource:
