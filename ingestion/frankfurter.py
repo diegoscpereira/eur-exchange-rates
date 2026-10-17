@@ -65,12 +65,5 @@ def load_frankfurter_ecb_rates(destination: str) -> LoadInfo:
 
 
 if __name__ == "__main__":
-    load_data = load_frankfurter_ecb_rates("duckdb")
+    load_data = load_frankfurter_ecb_rates("bigquery")
     print(load_data)
-
-    pipeline = dlt.attach(pipeline_name=PIPELINE_NAME)
-    test_df = pipeline.dataset()[RESOURCE_NAME].df()
-    print(test_df)
-    print(test_df["date"].nunique())
-    print(test_df["_dlt_load_id"].nunique())
-    print(test_df["_dlt_id"].nunique())
