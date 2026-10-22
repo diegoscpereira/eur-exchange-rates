@@ -1,2 +1,6 @@
 [destination.bigquery]
 location = "EU"
+
+[runtime]
+request_max_attempts = 3
+request_timeout = 30
