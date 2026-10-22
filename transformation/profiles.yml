@@ -1,0 +1,21 @@
+eur_exchange_rates:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: eur-exchange-rates
+      dataset: dev
+      location: EU
+      threads: 1
+      impersonate_service_account: >-
+        dbt-transform@eur-exchange-rates.iam.gserviceaccount.com
+    prod:
+      type: bigquery
+      method: oauth
+      project: eur-exchange-rates
+      dataset: prod
+      location: EU
+      threads: 1
+      impersonate_service_account: >-
+        dbt-transform@eur-exchange-rates.iam.gserviceaccount.com
