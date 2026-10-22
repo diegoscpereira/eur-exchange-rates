@@ -10,10 +10,11 @@ PRIMARY_KEY = ["date", "quote"]
 PATH = "rates"
 CURSOR_PATH = "date"
 INITIAL_VALUE = "2026-01-01"
+SOURCE_NAME = "frankfurter"
 
 ## Pipeline parameters (LOAD function)
 PIPELINE_NAME = "frankfurter"
-DATASET_NAME = "raw_frankfurter"
+DATASET_NAME = "raw"
 
 
 def read_frankfurter_ecb_rates() -> DltSource:
@@ -45,7 +46,8 @@ def read_frankfurter_ecb_rates() -> DltSource:
                     },
                 },
             ],
-        }
+        },
+        name=SOURCE_NAME,
     )
     return source
 

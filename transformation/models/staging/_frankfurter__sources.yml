@@ -1,0 +1,38 @@
+sources:
+  - name: frankfurter_api
+    database: eur-exchange-rates
+    schema: raw
+    loader: dlt
+
+    config:
+      tags:
+        - frankfurter
+        - api
+
+    tables:
+      - name: _dlt_loads
+        config:
+          loaded_at_field: inserted_at
+          freshness:
+            warn_after: {count: 1, period: day}
+            error_after: {count: 2, period: day}
+            filter: "schema_name = 'frankfurter'"
+        columns:
+          - name: load_id
+          - name: schema_name
+          - name: status
+          - name: schema_version_hash
+
+      - name: ecb_rates
+        config:
+          loaded_at_field: "cast(date as timestamp)"
+          freshness:
+            warn_after: {count: 4, period: day}
+            error_after: {count: 5, period: day}
+        columns:
+          - name: date
+          - name: base
+          - name: quote
+          - name: rate
+          - name: _dlt_load_id
+          - name: _dlt_id

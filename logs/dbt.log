@@ -1,0 +1,162 @@
+[0m21:18:11.075055 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7877c306a240>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7877c306af90>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7877c588caa0>]}
+
+
+============================== 21:18:11.114613 | fd63bc35-d5a3-4c3d-b39c-1c30fc9dde80 ==============================
+[0m21:18:11.114613 [info ] [MainThread]: Running with dbt=1.12.6
+[0m21:18:11.115085 [debug] [MainThread]: running dbt with arguments {'send_anonymous_usage_stats': 'True', 'cache_selected_only': 'False', 'version_check': 'True', 'fail_fast': 'False', 'maximum_seed_size_mib': '1', 'partial_parse': 'True', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'quiet': 'False', 'profiles_dir': '/home/diego/.dbt', 'write_json': 'True', 'debug': 'False', 'printer_width': '80', 'hints_enabled': 'True', 'use_colors': 'True', 'target_path': 'None', 'warn_error': 'None', 'introspect': 'True', 'invocation_command': 'dbt init', 'log_cache_events': 'False', 'use_experimental_parser': 'False', 'indirect_selection': 'eager', 'empty': 'None', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True'}
+[0m21:18:11.144208 [info ] [MainThread]: Creating dbt configuration folder at /home/diego/.dbt
+[0m21:23:11.721448 [debug] [MainThread]: Starter project path: /home/diego/projects/eur-exchange-rates/.venv/lib/python3.12/site-packages/dbt/include/starter_project
+[0m21:23:11.742959 [info ] [MainThread]: Setting up your profile.
+[0m21:33:24.119120 [info ] [MainThread]: Profile transformation written to /home/diego/.dbt/profiles.yml using target's profile_template.yml and your supplied values.
+[0m21:33:24.125495 [info ] [MainThread]: Running dbt debug to validate the project...
+[0m21:33:24.126106 [info ] [MainThread]: dbt version: 1.12.6
+[0m21:33:24.126351 [info ] [MainThread]: python version: 3.12.15
+[0m21:33:24.126591 [info ] [MainThread]: python path: /home/diego/projects/eur-exchange-rates/.venv/bin/python
+[0m21:33:24.126878 [info ] [MainThread]: os info: Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43
+[0m21:33:24.281050 [info ] [MainThread]: Using profiles dir at /home/diego/.dbt
+[0m21:33:24.281404 [info ] [MainThread]: Using profiles.yml file at /home/diego/.dbt/profiles.yml
+[0m21:33:24.281620 [info ] [MainThread]: Using dbt_project.yml file at /home/diego/projects/eur-exchange-rates/transformation/dbt_project.yml
+[0m21:33:24.281867 [info ] [MainThread]: adapter type: bigquery
+[0m21:33:24.282136 [info ] [MainThread]: adapter version: 1.12.1
+[0m21:33:24.358932 [info ] [MainThread]: Configuration:
+[0m21:33:24.359294 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m21:33:24.359531 [info ] [MainThread]:   dbt_project.yml file [[32mOK found and valid[0m]
+[0m21:33:24.359847 [info ] [MainThread]: Required dependencies:
+[0m21:33:24.360122 [debug] [MainThread]: Executing "git --help"
+[0m21:33:24.362735 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m21:33:24.362976 [debug] [MainThread]: STDERR: "b''"
+[0m21:33:24.363164 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m21:33:24.363386 [info ] [MainThread]: Connection:
+[0m21:33:24.363630 [info ] [MainThread]:   method: oauth
+[0m21:33:24.363846 [info ] [MainThread]:   database: eur-exchange-rates
+[0m21:33:24.364055 [info ] [MainThread]:   execution_project: eur-exchange-rates
+[0m21:33:24.364265 [info ] [MainThread]:   schema: dev
+[0m21:33:24.364496 [info ] [MainThread]:   location: EU
+[0m21:33:24.364702 [info ] [MainThread]:   priority: interactive
+[0m21:33:24.364907 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m21:33:24.365112 [info ] [MainThread]:   reservation: None
+[0m21:33:24.365327 [info ] [MainThread]:   impersonate_service_account: None
+[0m21:33:24.365526 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m21:33:24.365738 [info ] [MainThread]:   job_retries: 1
+[0m21:33:24.365961 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m21:33:24.366252 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m21:33:24.366480 [info ] [MainThread]:   job_link_info_level_log: False
+[0m21:33:24.366686 [info ] [MainThread]:   timeout_seconds: 300
+[0m21:33:24.366889 [info ] [MainThread]:   client_id: None
+[0m21:33:24.367092 [info ] [MainThread]:   token_uri: None
+[0m21:33:24.367324 [info ] [MainThread]:   compute_region: None
+[0m21:33:24.367525 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m21:33:24.367727 [info ] [MainThread]:   gcs_bucket: None
+[0m21:33:24.367928 [info ] [MainThread]:   dataproc_batch: None
+[0m21:33:24.368303 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m21:33:24.530559 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m21:33:24.530894 [debug] [MainThread]: On debug: select 1 as id
+[0m21:33:24.531187 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:33:26.147292 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=eur-exchange-rates&j=bq:EU:b06d65e6-fec0-42ec-9259-c5e003e5bbf0&page=queryresults
+[0m21:33:26.356955 [debug] [MainThread]: SQL status: OK in 0.209 seconds
+[0m21:33:26.605176 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m21:33:26.605569 [info ] [MainThread]: [32mAll checks passed![0m
+[0m21:33:26.605864 [info ] [MainThread]: Your new dbt project "transformation" was created!
+Initialized new project in /home/diego/projects/eur-exchange-rates/transformation/transformation
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m21:33:26.606353 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 915.5874, "process_in_blocks": "0", "process_kernel_time": 0.762509, "process_mem_max_rss": "249756", "process_out_blocks": "0", "process_user_time": 3.499901}
+[0m21:33:26.606671 [debug] [MainThread]: Command `dbt init` succeeded at 21:33:26.606601 after 915.59 seconds
+[0m21:33:26.606890 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m21:33:26.607136 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7877c3899070>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7877c3bc99a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7877c3bcb800>]}
+[0m21:33:26.607431 [debug] [MainThread]: Flushing usage events
+[0m21:33:27.138904 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m21:48:40.311874 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a75ead53a40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a75ead52270>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a75ead52f60>]}
+
+
+============================== 21:48:40.314684 | 8245cee8-22dd-42b4-9114-a2e6aa61f515 ==============================
+[0m21:48:40.314684 [info ] [MainThread]: Running with dbt=1.12.6
+[0m21:48:40.314998 [debug] [MainThread]: running dbt with arguments {'warn_error': 'None', 'introspect': 'True', 'empty': 'None', 'log_cache_events': 'False', 'printer_width': '80', 'use_experimental_parser': 'False', 'quiet': 'False', 'debug': 'False', 'log_format': 'default', 'maximum_seed_size_mib': '1', 'target_path': 'None', 'static_parser': 'True', 'version_check': 'True', 'cache_selected_only': 'False', 'use_colors': 'True', 'no_print': 'None', 'log_path': 'logs', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'profiles_dir': '/home/diego/.dbt', 'send_anonymous_usage_stats': 'True', 'write_json': 'True', 'hints_enabled': 'True', 'fail_fast': 'False', 'indirect_selection': 'eager', 'partial_parse': 'True', 'invocation_command': 'dbt debug'}
+[0m21:48:40.326983 [info ] [MainThread]: dbt version: 1.12.6
+[0m21:48:40.327293 [info ] [MainThread]: python version: 3.12.15
+[0m21:48:40.327538 [info ] [MainThread]: python path: /home/diego/projects/eur-exchange-rates/.venv/bin/python
+[0m21:48:40.327808 [info ] [MainThread]: os info: Linux-6.18.54.1-microsoft-standard-WSL2-x86_64-with-glibc2.43
+[0m21:48:40.891514 [info ] [MainThread]: Using profiles dir at /home/diego/.dbt
+[0m21:48:40.891825 [info ] [MainThread]: Using profiles.yml file at /home/diego/.dbt/profiles.yml
+[0m21:48:40.892021 [info ] [MainThread]: Using dbt_project.yml file at /home/diego/projects/eur-exchange-rates/dbt_project.yml
+[0m21:48:40.892222 [info ] [MainThread]: adapter type: bigquery
+[0m21:48:40.892443 [info ] [MainThread]: adapter version: 1.12.1
+[0m21:48:40.892690 [info ] [MainThread]: Configuration:
+[0m21:48:40.892885 [info ] [MainThread]:   profiles.yml file [[32mOK found and valid[0m]
+[0m21:48:40.893078 [info ] [MainThread]:   dbt_project.yml file [[31mERROR not found[0m]
+[0m21:48:40.893271 [info ] [MainThread]: Required dependencies:
+[0m21:48:40.893490 [debug] [MainThread]: Executing "git --help"
+[0m21:48:40.895233 [debug] [MainThread]: STDOUT: "b"usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]\n           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]\n           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]\n           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]\n           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]\n           <command> [<args>]\n\nThese are common Git commands used in various situations:\n\nstart a working area (see also: git help tutorial)\n   clone      Clone a repository into a new directory\n   init       Create an empty Git repository or reinitialize an existing one\n\nwork on the current change (see also: git help everyday)\n   add        Add file contents to the index\n   mv         Move or rename a file, a directory, or a symlink\n   restore    Restore working tree files\n   rm         Remove files from the working tree and from the index\n\nexamine the history and state (see also: git help revisions)\n   bisect     Use binary search to find the commit that introduced a bug\n   diff       Show changes between commits, commit and working tree, etc\n   grep       Print lines matching a pattern\n   log        Show commit logs\n   show       Show various types of objects\n   status     Show the working tree status\n\ngrow, mark and tweak your common history\n   backfill   Download missing objects in a partial clone\n   branch     List, create, or delete branches\n   commit     Record changes to the repository\n   merge      Join two or more development histories together\n   rebase     Reapply commits on top of another base tip\n   reset      Set `HEAD` or the index to a known state\n   switch     Switch branches\n   tag        Create, list, delete or verify tags\n\ncollaborate (see also: git help workflows)\n   fetch      Download objects and refs from another repository\n   pull       Fetch from and integrate with another repository or a local branch\n   push       Update remote refs along with associated objects\n\n'git help -a' and 'git help -g' list available subcommands and some\nconcept guides. See 'git help <command>' or 'git help <concept>'\nto read about a specific subcommand or concept.\nSee 'git help git' for an overview of the system.\n""
+[0m21:48:40.895441 [debug] [MainThread]: STDERR: "b''"
+[0m21:48:40.895607 [info ] [MainThread]:  - git [[32mOK found[0m]
+
+[0m21:48:40.895812 [info ] [MainThread]: Connection:
+[0m21:48:40.896024 [info ] [MainThread]:   method: oauth
+[0m21:48:40.896222 [info ] [MainThread]:   database: eur-exchange-rates
+[0m21:48:40.896421 [info ] [MainThread]:   execution_project: eur-exchange-rates
+[0m21:48:40.896638 [info ] [MainThread]:   schema: dev
+[0m21:48:40.896831 [info ] [MainThread]:   location: EU
+[0m21:48:40.897041 [info ] [MainThread]:   priority: interactive
+[0m21:48:40.897229 [info ] [MainThread]:   maximum_bytes_billed: None
+[0m21:48:40.897418 [info ] [MainThread]:   reservation: None
+[0m21:48:40.897608 [info ] [MainThread]:   impersonate_service_account: None
+[0m21:48:40.897798 [info ] [MainThread]:   job_retry_deadline_seconds: None
+[0m21:48:40.897997 [info ] [MainThread]:   job_retries: 1
+[0m21:48:40.898243 [info ] [MainThread]:   job_creation_timeout_seconds: None
+[0m21:48:40.898430 [info ] [MainThread]:   job_execution_timeout_seconds: 300
+[0m21:48:40.898626 [info ] [MainThread]:   job_link_info_level_log: False
+[0m21:48:40.898825 [info ] [MainThread]:   timeout_seconds: 300
+[0m21:48:40.899036 [info ] [MainThread]:   client_id: None
+[0m21:48:40.899221 [info ] [MainThread]:   token_uri: None
+[0m21:48:40.899407 [info ] [MainThread]:   compute_region: None
+[0m21:48:40.899601 [info ] [MainThread]:   dataproc_cluster_name: None
+[0m21:48:40.899793 [info ] [MainThread]:   gcs_bucket: None
+[0m21:48:40.899978 [info ] [MainThread]:   dataproc_batch: None
+[0m21:48:40.900260 [info ] [MainThread]: Registered adapter: bigquery=1.12.1
+[0m21:48:40.997074 [debug] [MainThread]: Acquiring new bigquery connection 'debug'
+[0m21:48:40.997372 [debug] [MainThread]: On debug: select 1 as id
+[0m21:48:40.997631 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m21:48:42.002365 [debug] [MainThread]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=eur-exchange-rates&j=bq:EU:2a865e88-932d-45a5-8842-2154700183f6&page=queryresults
+[0m21:48:42.204626 [debug] [MainThread]: SQL status: OK in 0.202 seconds
+[0m21:48:42.448294 [info ] [MainThread]:   Connection test: [[32mOK connection ok[0m]
+
+[0m21:48:42.448650 [info ] [MainThread]: [31m1 check failed:[0m
+[0m21:48:42.448876 [info ] [MainThread]: Project loading failed for the following reason:
+ project path </home/diego/projects/eur-exchange-rates/dbt_project.yml> not found
+
+[0m21:48:42.449280 [debug] [MainThread]: Resource report: {"command_name": "debug", "command_success": false, "command_wall_clock_time": 2.1940725, "process_in_blocks": "0", "process_kernel_time": 0.40168, "process_mem_max_rss": "238052", "process_out_blocks": "0", "process_user_time": 2.157021}
+[0m21:48:42.449593 [debug] [MainThread]: Command `dbt debug` failed at 21:48:42.449528 after 2.19 seconds
+[0m21:48:42.449810 [debug] [MainThread]: Connection 'debug' was properly closed.
+[0m21:48:42.450037 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a75eb586990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a75ead52f60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7a75ead52270>]}
+[0m21:48:42.450325 [debug] [MainThread]: Flushing usage events
+[0m21:48:42.998984 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:55:21.631619 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x751329db5bb0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75132c4171d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x751329db6960>]}
+
+
+============================== 22:55:21.634208 | 11d64b74-8d8b-4d2e-81dd-25e20cb2314c ==============================
+[0m22:55:21.634208 [info ] [MainThread]: Running with dbt=1.12.6
+[0m22:55:21.634568 [debug] [MainThread]: running dbt with arguments {'use_experimental_parser': 'False', 'partial_parse': 'True', 'quiet': 'False', 'warn_error': 'None', 'no_print': 'None', 'invocation_command': 'dbt source freshness', 'introspect': 'True', 'hints_enabled': 'True', 'use_colors': 'True', 'empty': 'None', 'log_path': 'logs', 'write_json': 'True', 'printer_width': '80', 'debug': 'False', 'send_anonymous_usage_stats': 'True', 'profiles_dir': '/home/diego/.dbt', 'warn_error_options': 'WarnErrorOptionsV2(error=[], warn=[], silence=[])', 'version_check': 'True', 'cache_selected_only': 'False', 'maximum_seed_size_mib': '1', 'log_cache_events': 'False', 'static_parser': 'True', 'log_format': 'default', 'indirect_selection': 'eager', 'target_path': 'None', 'fail_fast': 'False'}
+[0m22:55:21.634868 [error] [MainThread]: [[31mERROR[0m]: Encountered an error:
+Runtime Error
+  No dbt_project.yml found at expected path /home/diego/projects/eur-exchange-rates/dbt_project.yml
+  Verify that each entry within packages.yml (and their transitive dependencies) contains a file named dbt_project.yml
+  
+[0m22:55:21.635290 [debug] [MainThread]: Resource report: {"command_name": "freshness", "command_success": false, "command_wall_clock_time": 0.059064236, "process_in_blocks": "0", "process_kernel_time": 0.239945, "process_mem_max_rss": "109248", "process_out_blocks": "0", "process_user_time": 0.849644}
+[0m22:55:21.635586 [debug] [MainThread]: Command `dbt source freshness` failed at 22:55:21.635527 after 0.06 seconds
+[0m22:55:21.635780 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x75132954f5f0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x751329d72240>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7513292de2a0>]}
+[0m22:55:21.635990 [debug] [MainThread]: Flushing usage events
+[0m22:55:22.100923 [debug] [MainThread]: An error was encountered while trying to flush usage events
