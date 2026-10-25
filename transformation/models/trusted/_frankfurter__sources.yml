@@ -16,7 +16,7 @@ sources:
           freshness:
             warn_after: {count: 1, period: day}
             error_after: {count: 2, period: day}
-            filter: "schema_name = 'frankfurter'"
+            filter: "schema_name = '{{ var(\"frankfurter_dlt_schema\") }}'"
         columns:
           - name: load_id
           - name: schema_name
@@ -34,5 +34,16 @@ sources:
           - name: base
           - name: quote
           - name: rate
+          - name: _dlt_load_id
+          - name: _dlt_id
+
+      - name: currencies
+        columns:
+          - name: iso_code
+          - name: iso_numeric
+          - name: name
+          - name: symbol
+          - name: start_date
+          - name: end_date
           - name: _dlt_load_id
           - name: _dlt_id

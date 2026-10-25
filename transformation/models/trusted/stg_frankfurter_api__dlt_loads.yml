@@ -1,0 +1,15 @@
+models:
+  - name: stg_frankfurter_api__dlt_loads
+    description: >
+      dlt load metadata from the Frankfurter API ingestion.
+    columns:
+      - name: id
+        description: >
+          Batch unique key.
+        data_tests:
+          - unique
+          - not_null
+      - name: inserted_at
+        description: Time the load finished (UTC).
+        data_tests:
+          - not_null

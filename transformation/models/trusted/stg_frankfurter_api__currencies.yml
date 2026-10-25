@@ -1,0 +1,32 @@
+models:
+  - name: stg_frankfurter_api__currencies
+    description: >
+      Currencies published by the European Central Bank (ECB),
+      including legacy ones. One row per currency_iso_code.
+      Fully replaced on each load.
+    columns:
+      - name: dlt_load_id
+        description: Batch load key from the ingestion tool. Joins to _dlt_loads.id.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_frankfurter_api__dlt_loads')
+                field: id
+      - name: currency_iso_code
+        description: ISO alphabetic code (e.g. EUR, USD).
+        data_tests:
+          - not_null
+          - unique
+      - name: currency_name
+        description: Full currency name (e.g. Euro).
+        data_tests:
+          - not_null
+      - name: currency_symbol
+        description: Currency symbol (e.g. €).
+      - name: first_published_date
+        description: First date the ECB published a rate for it.
+      - name: last_published_date
+        description: >
+          Latest date the ECB published a rate for it. For active currencies, 
+          this is the latest ECB rate date.

@@ -1,0 +1,47 @@
+models:
+  - name: stg_frankfurter_api__ecb_rates
+    description: >
+      Daily European Central Bank (ECB) euro reference rates from the Frankfurter API.
+      One row per rate_date and quote_currency. Published on TARGET business days only.
+    columns:
+      - name: id
+        description: >
+          Surrogate key: hash of rate_date and quote_currency.
+        data_tests:
+          - unique
+          - not_null
+      - name: dlt_load_id
+        description: Batch load key from the ingestion tool. Joins to _dlt_loads.id.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_frankfurter_api__dlt_loads')
+                field: id
+      - name: rate_date
+        description: Date the reference rate applies to.
+        data_tests:
+          - not_null
+      - name: base_currency
+        description:  ISO 4217 code of the base currency. Always EUR.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['EUR']
+      - name: quote_currency
+        description: ISO 4217 code of the quoted currency.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('stg_frankfurter_api__currencies')
+                field: currency_iso_code
+      - name: exchange_rate
+        description: Units of quote_currency per 1 unit of base_currency.
+        data_tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                inclusive: false
