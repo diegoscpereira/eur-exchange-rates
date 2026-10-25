@@ -17,4 +17,5 @@ dev = [
     "pandas>=3.0.6",
     "ruff>=0.17.0",
     "sqlfluff>=4.4.0",
+    "sqlfluff-templater-dbt>=4.4.0",
 ]

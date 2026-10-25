@@ -1,0 +1,13 @@
+[sqlfluff]
+templater = dbt
+dialect = bigquery
+
+[sqlfluff:templater:dbt]
+project_dir = transformation
+profiles_dir = transformation
+
+[sqlfluff:layout:type:comma]
+line_position = leading
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper
