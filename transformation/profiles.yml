@@ -4,18 +4,16 @@ eur_exchange_rates:
     dev:
       type: bigquery
       method: oauth
-      project: eur-exchange-rates
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
       dataset: dev
       location: EU
       threads: 1
-      impersonate_service_account: >-
-        dbt-transform@eur-exchange-rates.iam.gserviceaccount.com
+      impersonate_service_account: "{{ env_var('GCP_SERVICE_ACCOUNT') }}"
     prod:
       type: bigquery
       method: oauth
-      project: eur-exchange-rates
+      project: "{{ env_var('GCP_PROJECT_ID') }}"
       dataset: prod
       location: EU
       threads: 1
-      impersonate_service_account: >-
-        dbt-transform@eur-exchange-rates.iam.gserviceaccount.com
+      impersonate_service_account: "{{ env_var('GCP_SERVICE_ACCOUNT') }}"
