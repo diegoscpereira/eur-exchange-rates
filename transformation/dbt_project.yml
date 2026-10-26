@@ -25,3 +25,4 @@ models:
 
 vars:
   frankfurter_dlt_schema: 'frankfurter'
+  rates_start_date: '2026-01-01'
