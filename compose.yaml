@@ -1,0 +1,23 @@
+x-pipeline: &pipeline
+  build: .
+  image: eur-exchange-rates
+  env_file: .env
+  volumes:
+    - type: bind
+      source: ${ADC_PATH:-${HOME}/.config/gcloud/application_default_credentials.json}
+      target: /root/.config/gcloud/application_default_credentials.json
+      read_only: true
+      bind:
+        create_host_path: false
+
+services:
+  ingest:
+    <<: *pipeline
+    command: python ingestion/<file>.py
+
+  transform:
+    <<: *pipeline
+    command: >
+      dbt build
+      --project-dir transformation
+      --profiles-dir transformation
