@@ -1,0 +1,49 @@
+models:
+  - name: fct_daily_exchange_rates
+    description: >
+      Daily EUR reference rates for every calendar day, one row per
+      calendar_date and quote_currency. Weekends and ECB holidays
+      carry forward the latest published rate.
+      EUR identity rows excluded.
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "published_rate_date <= calendar_date"
+    columns:
+      - name: id
+        description: >
+          Surrogate key: hash of calendar_date and quote_currency.
+        data_tests:
+          - unique
+          - not_null
+      - name: calendar_date
+        description: Calendar day the rate applies to.
+      - name: base_currency
+        description: ISO 4217 code of the base currency. Always EUR.
+      - name: quote_currency
+        description: ISO 4217 code of the quoted currency.
+      - name: quote_currency_name
+        description: >
+          Full name of the quoted currency, 
+          from the ECB currency lookup (e.g. US Dollar).
+      - name: exchange_rate
+        description: Units of quote_currency per 1 EUR.
+      - name: published_rate_date
+        description: >
+          Date the ECB published the rate used on this row. Equals
+          calendar_date on business days.
+      - name: is_carried_forward
+        description: True when the rate was carried from an earlier day.
+      - name: days_since_published
+        description: >
+          Days between calendar_date and published_rate_date.
+          0 on business days.
+        data_tests:
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 0
+                max_value: 5
+              config:
+                severity: warn
+      - name: last_refreshed_at
+        description: Latest successful pipeline load (UTC).

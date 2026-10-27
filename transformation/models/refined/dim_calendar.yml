@@ -1,5 +1,5 @@
 models:
-  - name: calendar
+  - name: dim_calendar
     description: >
       Calendar dimension. One row per calendar day, from the
       rates_start_date var up to and including today (UTC).
