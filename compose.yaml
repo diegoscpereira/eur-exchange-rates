@@ -13,7 +13,7 @@ x-pipeline: &pipeline
 services:
   ingest:
     <<: *pipeline
-    command: python ingestion/<file>.py
+    command: python ingestion/frankfurter.py
 
   transform:
     <<: *pipeline
