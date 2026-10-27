@@ -1,0 +1,46 @@
+models:
+  - name: fct_trailing_exchange_rate_changes
+    description: >
+      Trailing change of each quote currency against EUR, one row per
+      window_name and quote_currency. Measured as of anchor_date (the
+      latest published ECB rate date). YTD is measured from the 
+      first rate date of the year in data (2 Jan).
+    data_tests:
+      - dbt_utils.expression_is_true:
+          arguments:
+            expression: "baseline_date < anchor_date"
+    columns:
+      - name: id
+        description: >
+          Surrogate key: hash of window_name and quote_currency.
+        data_tests:
+          - unique
+          - not_null
+      - name: window_name
+        description: Trailing window (1D, 7D, 1M, 3M, YTD).
+      - name: window_order
+        description: Sort key for window_name (1 = 1D ... 5 = YTD).
+      - name: anchor_date
+        description: Latest published ECB rate date. Same on every row.
+      - name: baseline_date
+        description: Start date of the window.
+      - name: quote_currency
+        description: ISO 4217 code of the quoted currency.
+      - name: quote_currency_name
+        description: Full name of the quoted currency.
+      - name: baseline_rate
+        description: >
+          Units of quote_currency per 1 EUR on baseline_date. Null when
+          the window starts before available history.
+      - name: anchor_rate
+        description: Units of quote_currency per 1 EUR on anchor_date.
+        data_tests:
+          - not_null
+      - name: rate_change_pct
+        description: anchor_rate / baseline_rate - 1.
+      - name: quote_value_change_pct
+        description: >
+          baseline_rate / anchor_rate - 1. Change in the quote
+          currency's value against EUR.
+      - name: last_refreshed_at
+        description: Latest successful pipeline load (UTC). Same on every row.
