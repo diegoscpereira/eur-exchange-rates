@@ -1,0 +1,19 @@
+# --- secrets / config ---
+.env
+**/.dlt/secrets.toml
+
+# --- VCS / editor ---
+.git/
+.gitignore
+.vscode/
+
+# --- local Python env & caches ---
+.venv/
+**/__pycache__/
+**/.pytest_cache/
+**/.ruff_cache/
+
+# --- dbt artifacts ---
+transformation/target/
+transformation/logs/
+transformation/dbt_packages/
