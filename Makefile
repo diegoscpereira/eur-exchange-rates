@@ -7,7 +7,7 @@ SQLFLUFF = uv run --env-file .env sqlfluff
 
 # Load raw FX rates into BigQuery (dlt)
 ingest:
-	$(PYTHON) ingestion/<file>.py
+	$(PYTHON) ingestion/frankfurter.py
 
 # Any dbt command from the repo root, e.g.:
 #   make dbt-build
