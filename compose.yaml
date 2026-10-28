@@ -1,6 +1,6 @@
 x-pipeline: &pipeline
   build: .
-  image: ${PIPELINE_IMAGE}
+  image: ${PIPELINE_IMAGE:?set PIPELINE_IMAGE in .env}
   env_file: .env
   volumes:
     - type: bind
@@ -10,10 +10,22 @@ x-pipeline: &pipeline
       bind:
         create_host_path: false
 
+x-adc-target: &adc-target
+  /root/.config/gcloud/application_default_credentials.json
+
 services:
   ingest:
     <<: *pipeline
     command: python ingestion/frankfurter.py
+    environment:
+      GOOGLE_CLOUD_PROJECT: ${GCP_PROJECT_ID}
+    volumes:
+      - type: bind
+        source: ${ADC_PATH_DLT:?set ADC_PATH_DLT in .env}
+        target: *adc-target
+        read_only: true
+        bind:
+          create_host_path: false
 
   transform:
     <<: *pipeline
@@ -21,3 +33,10 @@ services:
       dbt build
       --project-dir transformation
       --profiles-dir transformation
+    volumes:
+      - type: bind
+        source: ${ADC_PATH:?set ADC_PATH in .env}
+        target: *adc-target
+        read_only: true
+        bind:
+          create_host_path: false
