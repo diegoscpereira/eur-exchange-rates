@@ -8,7 +8,7 @@ eur_exchange_rates:
       dataset: dev
       location: EU
       threads: 1
-      impersonate_service_account: "{{ env_var('GCP_SERVICE_ACCOUNT') }}"
+      impersonate_service_account: "{{ env_var('DBT_SERVICE_ACCOUNT') }}"
     prod:
       type: bigquery
       method: oauth
@@ -16,4 +16,4 @@ eur_exchange_rates:
       dataset: prod
       location: EU
       threads: 1
-      impersonate_service_account: "{{ env_var('GCP_SERVICE_ACCOUNT') }}"
+      impersonate_service_account: "{{ env_var('DBT_SERVICE_ACCOUNT') }}"
