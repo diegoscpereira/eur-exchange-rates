@@ -10,17 +10,19 @@ from docker.types import Mount
 PIPELINE_IMAGE = os.environ["PIPELINE_IMAGE"]
 GCP_PROJECT_ID = os.environ["GCP_PROJECT_ID"]
 DBT_SERVICE_ACCOUNT = os.environ["DBT_SERVICE_ACCOUNT"]
-ADC_PATH_DLT = os.environ["ADC_PATH_DLT"]   
-ADC_PATH_DBT = os.environ["ADC_PATH"]       
+ADC_PATH_DLT = os.environ["ADC_PATH_DLT"]
+ADC_PATH_DBT = os.environ["ADC_PATH"]
 
 ADC_TARGET = "/root/.config/gcloud/application_default_credentials.json"
-LOAD_DATE = "{{ macros.ds_add(ds, -1) }}"   
+LOAD_DATE = "{{ macros.ds_add(ds, -1) }}"
 
 
 def adc_mount(host_path: str) -> Mount:
     return Mount(
-        source=host_path, target=ADC_TARGET,
-        type="bind", read_only=True,
+        source=host_path,
+        target=ADC_TARGET,
+        type="bind",
+        read_only=True,
     )
 
 
@@ -49,8 +51,10 @@ with DAG(
         task_id="ingest",
         pool="dlt_frankfurter",
         command=[
-            "python", "ingestion/frankfurter.py",
-            "--start", LOAD_DATE,
+            "python",
+            "ingestion/frankfurter.py",
+            "--start",
+            LOAD_DATE,
         ],
         environment={"GOOGLE_CLOUD_PROJECT": GCP_PROJECT_ID},
         mounts=[adc_mount(ADC_PATH_DLT)],
@@ -61,9 +65,12 @@ with DAG(
         task_id="transform",
         pool="dbt_prod",
         command=[
-            "dbt", "build",
-            "--project-dir", "transformation",
-            "--profiles-dir", "transformation",
+            "dbt",
+            "build",
+            "--project-dir",
+            "transformation",
+            "--profiles-dir",
+            "transformation",
         ],
         environment={
             "GCP_PROJECT_ID": GCP_PROJECT_ID,

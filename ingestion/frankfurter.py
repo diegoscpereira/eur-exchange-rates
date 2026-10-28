@@ -41,7 +41,7 @@ def read_frankfurter_ecb_rates(start_date: date, end_date: date) -> DltSource:
                         "paginator": "single_page",
                         "params": {
                             "from": start_date.isoformat(),
-                            "to": end_date.isoformat()
+                            "to": end_date.isoformat(),
                         },
                     },
                 },
@@ -62,7 +62,9 @@ def read_frankfurter_ecb_rates(start_date: date, end_date: date) -> DltSource:
     return source
 
 
-def load_frankfurter_ecb_rates(destination: str, start_date: date, end_date: date) -> LoadInfo:
+def load_frankfurter_ecb_rates(
+    destination: str, start_date: date, end_date: date
+) -> LoadInfo:
     """
     Creates and runs the dlt pipeline.
     """
@@ -80,17 +82,19 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     """
     CLI entry layer: decides WHICH dates to load.
     Defaults to yesterday; --end defaults to --start.
-    """                                           
+    """
     yesterday = date.today() - timedelta(days=1)
-    parser = argparse.ArgumentParser(
-        description="Load ECB rates from Frankfurter."
-    )
+    parser = argparse.ArgumentParser(description="Load ECB rates from Frankfurter.")
     parser.add_argument(
-        "--start", type=date.fromisoformat, default=yesterday,
+        "--start",
+        type=date.fromisoformat,
+        default=yesterday,
         help="First date to load, YYYY-MM-DD (default: yesterday)",
     )
     parser.add_argument(
-        "--end", type=date.fromisoformat, default=None,
+        "--end",
+        type=date.fromisoformat,
+        default=None,
         help="Last date to load, inclusive (default: --start)",
     )
     args = parser.parse_args(argv)
