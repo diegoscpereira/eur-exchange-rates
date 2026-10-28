@@ -76,6 +76,8 @@ env.bak/
 venv.bak/
 .dlt/secrets.toml
 .vscode/
+orchestration/logs/
+
 
 ### Python Patch ###
 poetry.toml

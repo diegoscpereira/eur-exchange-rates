@@ -1,10 +1,10 @@
 x-pipeline: &pipeline
   build: .
-  image: eur-exchange-rates
+  image: ${PIPELINE_IMAGE}
   env_file: .env
   volumes:
     - type: bind
-      source: ${ADC_PATH:-${HOME}/.config/gcloud/application_default_credentials.json}
+      source: ${ADC_PATH:?set ADC_PATH in .env}
       target: /root/.config/gcloud/application_default_credentials.json
       read_only: true
       bind:
