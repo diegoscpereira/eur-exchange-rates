@@ -39,7 +39,7 @@ default_args = {
 with DAG(
     dag_id="eur_daily_rates",
     schedule=CronTriggerTimetable("0 6 * * *", timezone="UTC"),
-    start_date=datetime(2026, 10, 1, tzinfo=timezone.utc),
+    start_date=datetime(2026, 10, 2, tzinfo=timezone.utc),
     catchup=False,
     max_active_runs=1,
     default_args=default_args,
