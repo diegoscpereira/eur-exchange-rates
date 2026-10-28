@@ -47,6 +47,7 @@ with DAG(
 ):
     ingest = DockerOperator(
         task_id="ingest",
+        pool="dlt_frankfurter",
         command=[
             "python", "ingestion/frankfurter.py",
             "--start", LOAD_DATE,
@@ -58,6 +59,7 @@ with DAG(
 
     transform = DockerOperator(
         task_id="transform",
+        pool="dbt_prod",
         command=[
             "dbt", "build",
             "--project-dir", "transformation",
