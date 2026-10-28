@@ -1,3 +1,5 @@
+import argparse
+from datetime import date, timedelta
 import dlt
 from dlt.sources.rest_api import rest_api_source
 from dlt.sources import DltSource
@@ -8,8 +10,6 @@ BASE_URL = "https://api.frankfurter.dev/v2"
 RESOURCE_NAME_RATES = "ecb_rates"
 PRIMARY_KEY_RATES = ["date", "quote"]
 PATH_RATES = "providers/ecb/rates"
-CURSOR_PATH_RATES = "date"
-INITIAL_VALUE_RATES = "2026-01-01"
 RESOURCE_NAME_CURRENCIES = "currencies"
 PATH_CURRENCIES = "currencies"
 SOURCE_NAME = "frankfurter"
@@ -19,12 +19,12 @@ PIPELINE_NAME = "frankfurter"
 DATASET_NAME = "raw"
 
 
-def read_frankfurter_ecb_rates() -> DltSource:
+def read_frankfurter_ecb_rates(start_date: date, end_date: date) -> DltSource:
     """
     Set the parameters to connect with Frankfurter API.
-    Looks for daily EUR rates from the European Central Bank (ECB) endpoint:
-        - Load strategy set to incremental so it GETs new records daily.
-        - Write disposition set to MERGE so the load function is idempotent.
+    Daily EUR rates from the ECB for an explicit window
+    [start_date, end_date], both inclusive.
+    Write disposition set to MERGE so the load function is idempotent.
     It also fetches currencies lookup page, with the official name filtered to ECB-only currencies.
     """
     source = rest_api_source(
@@ -40,11 +40,8 @@ def read_frankfurter_ecb_rates() -> DltSource:
                         "method": "GET",
                         "paginator": "single_page",
                         "params": {
-                            "from": {
-                                "type": "incremental",
-                                "cursor_path": CURSOR_PATH_RATES,
-                                "initial_value": INITIAL_VALUE_RATES,
-                            }
+                            "from": start_date.isoformat(),
+                            "to": end_date.isoformat()
                         },
                     },
                 },
@@ -65,7 +62,7 @@ def read_frankfurter_ecb_rates() -> DltSource:
     return source
 
 
-def load_frankfurter_ecb_rates(destination: str) -> LoadInfo:
+def load_frankfurter_ecb_rates(destination: str, start_date: date, end_date: date) -> LoadInfo:
     """
     Creates and runs the dlt pipeline.
     """
@@ -75,10 +72,36 @@ def load_frankfurter_ecb_rates(destination: str) -> LoadInfo:
         dataset_name=DATASET_NAME,
     )
 
-    load_info = pipeline.run(read_frankfurter_ecb_rates())
-    return load_info
+    source = read_frankfurter_ecb_rates(start_date, end_date)
+    return pipeline.run(source)
+
+
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    """
+    CLI entry layer: decides WHICH dates to load.
+    Defaults to yesterday; --end defaults to --start.
+    """                                           
+    yesterday = date.today() - timedelta(days=1)
+    parser = argparse.ArgumentParser(
+        description="Load ECB rates from Frankfurter."
+    )
+    parser.add_argument(
+        "--start", type=date.fromisoformat, default=yesterday,
+        help="First date to load, YYYY-MM-DD (default: yesterday)",
+    )
+    parser.add_argument(
+        "--end", type=date.fromisoformat, default=None,
+        help="Last date to load, inclusive (default: --start)",
+    )
+    args = parser.parse_args(argv)
+    if args.end is None:
+        args.end = args.start
+    if args.start > args.end:
+        parser.error("--start must be on or before --end")
+    return args
 
 
 if __name__ == "__main__":
-    load_data = load_frankfurter_ecb_rates("bigquery")
+    args = parse_args()
+    load_data = load_frankfurter_ecb_rates("bigquery", args.start, args.end)
     print(load_data)
