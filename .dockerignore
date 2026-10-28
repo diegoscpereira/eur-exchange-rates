@@ -1,6 +1,10 @@
 # --- secrets / config ---
 .env
+**/.env
 **/.dlt/secrets.toml
+
+# --- orchestration (separate concern, own image) ---
+orchestration/
 
 # --- VCS / editor ---
 .git/
