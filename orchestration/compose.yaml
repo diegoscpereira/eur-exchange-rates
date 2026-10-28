@@ -48,8 +48,11 @@ services:
     command:
       - -c
       - |
+        set -e
         mkdir -p /opt/airflow/{logs,dags,plugins,config}
         /entrypoint airflow config list > /dev/null
+        /entrypoint airflow pools set dlt_frankfurter 1 "one dlt run at a time"
+        /entrypoint airflow pools set dbt_prod 1 "one prod dbt build at a time"
         chown -R "${AIRFLOW_UID:-50000}:0" \
           /opt/airflow/{logs,dags,plugins,config}
     environment:
