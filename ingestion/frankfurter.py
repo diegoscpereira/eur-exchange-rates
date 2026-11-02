@@ -1,9 +1,10 @@
 import argparse
 from datetime import date, timedelta
+
 import dlt
-from dlt.sources.rest_api import rest_api_source
-from dlt.sources import DltSource
 from dlt.common.pipeline import LoadInfo
+from dlt.sources import DltSource
+from dlt.sources.rest_api import rest_api_source
 
 ## Connection parameters (READ function)
 BASE_URL = "https://api.frankfurter.dev/v2"

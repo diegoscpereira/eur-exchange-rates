@@ -1,11 +1,10 @@
 import os
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from airflow.providers.docker.operators.docker import DockerOperator
 from airflow.sdk import DAG
 from airflow.timetables.trigger import CronTriggerTimetable
 from docker.types import Mount
-
 
 PIPELINE_IMAGE = os.environ["PIPELINE_IMAGE"]
 GCP_PROJECT_ID = os.environ["GCP_PROJECT_ID"]
@@ -41,7 +40,7 @@ default_args = {
 with DAG(
     dag_id="eur_daily_rates",
     schedule=CronTriggerTimetable("0 6 * * *", timezone="UTC"),
-    start_date=datetime(2026, 10, 2, tzinfo=timezone.utc),
+    start_date=datetime(2026, 10, 2, tzinfo=UTC),
     catchup=False,
     max_active_runs=1,
     default_args=default_args,
