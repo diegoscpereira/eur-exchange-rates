@@ -15,6 +15,19 @@ ADC_PATH_DBT = os.environ["ADC_PATH"]
 ADC_TARGET = "/root/.config/gcloud/application_default_credentials.json"
 LOAD_DATE = "{{ macros.ds_add(ds, -1) }}"
 
+# Shared by every dbt task
+DBT_FLAGS = [
+    "--project-dir",
+    "transformation",
+    "--profiles-dir",
+    "transformation",
+]
+DBT_ENV = {
+    "GCP_PROJECT_ID": GCP_PROJECT_ID,
+    "DBT_SERVICE_ACCOUNT": DBT_SERVICE_ACCOUNT,
+    "DBT_TARGET": "prod",
+}
+
 
 def adc_mount(host_path: str) -> Mount:
     return Mount(
@@ -30,6 +43,7 @@ docker_defaults = {
     "docker_url": "unix://var/run/docker.sock",
     "auto_remove": "success",
     "mount_tmp_dir": False,
+    "force_pull": True,
 }
 
 default_args = {
@@ -60,24 +74,24 @@ with DAG(
         **docker_defaults,
     )
 
+    # Stale data won't freshen on retry, so fail fast
+    freshness = DockerOperator(
+        task_id="freshness",
+        pool="dbt_prod",
+        command=["dbt", "source", "freshness", *DBT_FLAGS],
+        environment=DBT_ENV,
+        mounts=[adc_mount(ADC_PATH_DBT)],
+        retries=0,
+        **docker_defaults,
+    )
+
     transform = DockerOperator(
         task_id="transform",
         pool="dbt_prod",
-        command=[
-            "dbt",
-            "build",
-            "--project-dir",
-            "transformation",
-            "--profiles-dir",
-            "transformation",
-        ],
-        environment={
-            "GCP_PROJECT_ID": GCP_PROJECT_ID,
-            "DBT_SERVICE_ACCOUNT": DBT_SERVICE_ACCOUNT,
-            "DBT_TARGET": "prod",
-        },
+        command=["dbt", "build", *DBT_FLAGS],
+        environment=DBT_ENV,
         mounts=[adc_mount(ADC_PATH_DBT)],
         **docker_defaults,
     )
 
-    ingest >> transform
+    ingest >> freshness >> transform

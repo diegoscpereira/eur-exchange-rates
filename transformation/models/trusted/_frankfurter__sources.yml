@@ -28,7 +28,7 @@ sources:
           loaded_at_field: "cast(date as timestamp)"
           freshness:
             warn_after: {count: 4, period: day}
-            error_after: {count: 5, period: day}
+            error_after: {count: 6, period: day}
         columns:
           - name: date
           - name: base
