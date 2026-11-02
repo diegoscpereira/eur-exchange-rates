@@ -1,19 +1,16 @@
 eur_exchange_rates:
   target: dev
   outputs:
-    dev:
+    ci: &base
       type: bigquery
       method: oauth
       project: "{{ env_var('GCP_PROJECT_ID') }}"
       dataset: dev
       location: EU
       threads: 1
+    dev: &impersonated
+      <<: *base
       impersonate_service_account: "{{ env_var('DBT_SERVICE_ACCOUNT') }}"
     prod:
-      type: bigquery
-      method: oauth
-      project: "{{ env_var('GCP_PROJECT_ID') }}"
+      <<: *impersonated
       dataset: prod
-      location: EU
-      threads: 1
-      impersonate_service_account: "{{ env_var('DBT_SERVICE_ACCOUNT') }}"

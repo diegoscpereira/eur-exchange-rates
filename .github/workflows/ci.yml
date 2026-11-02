@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
+  lint-python:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -21,14 +21,21 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
 
-  dbt-parse:
+  dbt-checks:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     env:
-      DBT_TARGET: dev
-      GCP_PROJECT_ID: dev
-      DBT_SERVICE_ACCOUNT: dev
+      DBT_TARGET: ci
+      GCP_PROJECT_ID: eur-exchange-rates
+      DBT_SERVICE_ACCOUNT: ci-dummy
     steps:
       - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: projects/598539823885/locations/global/workloadIdentityPools/github/providers/github-repo
+          service_account: github-ci@eur-exchange-rates.iam.gserviceaccount.com
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --locked
       - run: make dbt-deps
