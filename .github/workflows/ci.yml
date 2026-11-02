@@ -33,6 +33,7 @@ jobs:
       - run: uv sync --locked
       - run: make dbt-deps
       - run: make dbt-parse
+      - run: make lint
 
   docker-build:
     runs-on: ubuntu-latest
