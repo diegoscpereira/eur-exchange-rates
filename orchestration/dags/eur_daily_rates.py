@@ -13,7 +13,7 @@ ADC_PATH_DLT = os.environ["ADC_PATH_DLT"]
 ADC_PATH_DBT = os.environ["ADC_PATH"]
 
 ADC_TARGET = "/root/.config/gcloud/application_default_credentials.json"
-LOAD_DATE = "{{ macros.ds_add(ds, -1) }}"
+LOAD_DATE = "{{ macros.ds_add((dag_run.logical_date or dag_run.run_after) | ds, -1) }}"
 
 # Shared by every dbt task
 DBT_FLAGS = [
