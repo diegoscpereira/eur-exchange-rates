@@ -3,7 +3,7 @@
 PYTHON = uv run python
 DBT = uv run dbt
 DBT_FLAGS = --project-dir transformation --profiles-dir transformation
-SQLFLUFF = uv run --env-file .env sqlfluff
+SQLFLUFF = uv run sqlfluff
 
 # Load raw FX rates into BigQuery (dlt)
 ingest:
