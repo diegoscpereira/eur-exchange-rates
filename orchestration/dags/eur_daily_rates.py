@@ -13,7 +13,8 @@ ADC_PATH_DLT = os.environ["ADC_PATH_DLT"]
 ADC_PATH_DBT = os.environ["ADC_PATH"]
 
 ADC_TARGET = "/root/.config/gcloud/application_default_credentials.json"
-LOAD_DATE = "{{ macros.ds_add((dag_run.logical_date or dag_run.run_after) | ds, -1) }}"
+LOAD_END = "{{ (dag_run.logical_date or dag_run.run_after) | ds }}"
+LOAD_START = "{{ macros.ds_add((dag_run.logical_date or dag_run.run_after) | ds, -7) }}"
 
 # Shared by every dbt task
 DBT_FLAGS = [
@@ -53,7 +54,7 @@ default_args = {
 
 with DAG(
     dag_id="eur_daily_rates",
-    schedule=CronTriggerTimetable("0 6 * * *", timezone="UTC"),
+    schedule=CronTriggerTimetable("0 17 * * *", timezone="UTC"),
     start_date=datetime(2026, 10, 2, tzinfo=UTC),
     catchup=False,
     max_active_runs=1,
@@ -67,7 +68,9 @@ with DAG(
             "python",
             "ingestion/frankfurter.py",
             "--start",
-            LOAD_DATE,
+            LOAD_START,
+            "--end",
+            LOAD_END,
         ],
         environment={"GOOGLE_CLOUD_PROJECT": GCP_PROJECT_ID},
         mounts=[adc_mount(ADC_PATH_DLT)],
