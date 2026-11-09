@@ -45,11 +45,11 @@ WITH daily AS (
     SELECT
         'YTD' AS window_name
         , 5 AS window_order
-        , min(daily.calendar_date) AS baseline_date
+        , min(daily.published_rate_date) AS baseline_date
     FROM daily
     CROSS JOIN anchor
     WHERE
-        extract(YEAR FROM daily.calendar_date)
+        extract(YEAR FROM daily.published_rate_date)
         = extract(YEAR FROM anchor.anchor_date)
 )
 

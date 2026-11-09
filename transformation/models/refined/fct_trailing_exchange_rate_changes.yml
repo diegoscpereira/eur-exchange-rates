@@ -4,7 +4,7 @@ models:
       Trailing change of each quote currency against EUR, one row per
       window_name and quote_currency. Measured as of anchor_date (the
       latest published ECB rate date). YTD is measured from the 
-      first rate date of the year in data (2 Jan).
+      first published rate of the year.
     data_tests:
       - dbt_utils.expression_is_true:
           arguments:
