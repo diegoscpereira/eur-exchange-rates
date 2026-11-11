@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <style>
+    .bg { fill: #ffffff; }
+    .box { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1.2; }
+    .band { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1.2; }
+    .group { fill: none; stroke: #8250df; stroke-width: 1.4; stroke-dasharray: 6 4; }
+    .chip { fill: #ffffff; stroke: #d0d7de; stroke-width: 1.2; }
+    .title { fill: #1f2328; font-size: 15px; font-weight: 600; }
+    .label { fill: #1f2328; font-size: 13px; font-weight: 600; }
+    .sub { fill: #59636e; font-size: 12px; }
+    .accent-src { stroke: #1a7f37; stroke-width: 3; }
+    .accent-ing { stroke: #0969da; stroke-width: 3; }
+    .accent-bq { stroke: #8250df; stroke-width: 3; }
+    .accent-viz { stroke: #bf8700; stroke-width: 3; }
+    .accent-orc { stroke: #cf222e; stroke-width: 3; }
+    .accent-ci { stroke: #59636e; stroke-width: 3; }
+    .group-label { fill: #8250df; font-size: 13px; font-weight: 600; }
+    .flow { stroke: #59636e; stroke-width: 1.6; fill: none; }
+    .ctrl { stroke: #cf222e; stroke-width: 1.4; fill: none; stroke-dasharray: 5 4; }
+    .head { fill: #59636e; }
+    .head-ctrl { fill: #cf222e; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .box, .band { fill: #161b22; stroke: #30363d; }
+      .chip { fill: #0d1117; stroke: #30363d; }
+      .title, .label { fill: #e6edf3; }
+      .sub { fill: #9198a1; }
+      .group { stroke: #a371f7; }
+      .group-label { fill: #a371f7; }
+      .accent-src { stroke: #3fb950; }
+      .accent-ing { stroke: #4493f8; }
+      .accent-bq { stroke: #a371f7; }
+      .accent-viz { stroke: #d29922; }
+      .accent-orc, .ctrl { stroke: #f85149; }
+      .head-ctrl { fill: #f85149; }
+      .accent-ci { stroke: #9198a1; }
+      .flow { stroke: #9198a1; }
+      .head { fill: #9198a1; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="head"/>
+    </marker>
+    <marker id="arrow-ctrl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="head-ctrl"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="960" height="470" rx="12"/>
+
+  <!-- Orchestration -->
+  <rect class="band" x="20" y="20" width="745" height="100" rx="10"/>
+  <line class="accent-orc" x1="30" y1="30" x2="30" y2="110" stroke-linecap="round"/>
+  <text class="title" x="44" y="50">Apache Airflow 3</text>
+  <text class="sub" x="44" y="70">Docker Compose · DockerOperator</text>
+  <text class="sub" x="44" y="88">Daily at 17:00 UTC, after the ECB publishes</text>
+
+  <rect class="chip" x="400" y="68" width="100" height="32" rx="16"/>
+  <text class="label" x="450" y="89" text-anchor="middle">ingest</text>
+  <rect class="chip" x="525" y="68" width="110" height="32" rx="16"/>
+  <text class="label" x="580" y="89" text-anchor="middle">freshness</text>
+  <rect class="chip" x="660" y="68" width="100" height="32" rx="16"/>
+  <text class="label" x="710" y="89" text-anchor="middle">transform</text>
+  <line class="flow" x1="500" y1="84" x2="523" y2="84" marker-end="url(#arrow)"/>
+  <line class="flow" x1="635" y1="84" x2="658" y2="84" marker-end="url(#arrow)"/>
+
+  <path class="ctrl" d="M450 100 V135 H270 V193" marker-end="url(#arrow-ctrl)"/>
+  <line class="ctrl" x1="580" y1="100" x2="580" y2="148" marker-end="url(#arrow-ctrl)"/>
+  <line class="ctrl" x1="710" y1="100" x2="710" y2="148" marker-end="url(#arrow-ctrl)"/>
+
+  <!-- Source -->
+  <rect class="box" x="20" y="195" width="140" height="80" rx="8"/>
+  <line class="accent-src" x1="20" y1="203" x2="20" y2="267" stroke-linecap="round"/>
+  <text class="label" x="90" y="225" text-anchor="middle">Frankfurter API</text>
+  <text class="sub" x="90" y="245" text-anchor="middle">ECB reference rates</text>
+  <text class="sub" x="90" y="262" text-anchor="middle">REST · JSON</text>
+
+  <!-- Ingestion -->
+  <rect class="box" x="195" y="195" width="150" height="80" rx="8"/>
+  <line class="accent-ing" x1="195" y1="203" x2="195" y2="267" stroke-linecap="round"/>
+  <text class="label" x="270" y="225" text-anchor="middle">dlt (Python)</text>
+  <text class="sub" x="270" y="245" text-anchor="middle">Daily batch load</text>
+  <text class="sub" x="270" y="262" text-anchor="middle">Idempotent merge</text>
+
+  <!-- Warehouse -->
+  <rect class="group" x="380" y="150" width="385" height="170" rx="10"/>
+  <text class="group-label" x="396" y="174">Google BigQuery (EU)</text>
+
+  <rect class="box" x="395" y="195" width="100" height="80" rx="8"/>
+  <line class="accent-bq" x1="395" y1="203" x2="395" y2="267" stroke-linecap="round"/>
+  <text class="label" x="445" y="225" text-anchor="middle">raw</text>
+  <text class="sub" x="445" y="245" text-anchor="middle">dlt tables</text>
+
+  <rect class="box" x="520" y="195" width="100" height="80" rx="8"/>
+  <line class="accent-bq" x1="520" y1="203" x2="520" y2="267" stroke-linecap="round"/>
+  <text class="label" x="570" y="225" text-anchor="middle">trusted</text>
+  <text class="sub" x="570" y="245" text-anchor="middle">staging views</text>
+
+  <rect class="box" x="645" y="195" width="100" height="80" rx="8"/>
+  <line class="accent-bq" x1="645" y1="203" x2="645" y2="267" stroke-linecap="round"/>
+  <text class="label" x="695" y="225" text-anchor="middle">refined</text>
+  <text class="sub" x="695" y="245" text-anchor="middle">facts &amp; dims</text>
+
+  <text class="sub" x="572.5" y="304" text-anchor="middle">Transformed and tested with dbt</text>
+
+  <!-- Visualization -->
+  <rect class="box" x="800" y="195" width="140" height="80" rx="8"/>
+  <line class="accent-viz" x1="800" y1="203" x2="800" y2="267" stroke-linecap="round"/>
+  <text class="label" x="870" y="225" text-anchor="middle">Looker Studio</text>
+  <text class="sub" x="870" y="245" text-anchor="middle">FX dashboard</text>
+
+  <!-- Data flow -->
+  <line class="flow" x1="160" y1="235" x2="193" y2="235" marker-end="url(#arrow)"/>
+  <line class="flow" x1="345" y1="235" x2="393" y2="235" marker-end="url(#arrow)"/>
+  <line class="flow" x1="495" y1="235" x2="518" y2="235" marker-end="url(#arrow)"/>
+  <line class="flow" x1="620" y1="235" x2="643" y2="235" marker-end="url(#arrow)"/>
+  <line class="flow" x1="745" y1="235" x2="798" y2="235" marker-end="url(#arrow)"/>
+
+  <!-- CI/CD -->
+  <rect class="band" x="20" y="350" width="920" height="100" rx="10"/>
+  <line class="accent-ci" x1="30" y1="360" x2="30" y2="440" stroke-linecap="round"/>
+  <text class="title" x="44" y="380">GitHub Actions CI/CD</text>
+  <text class="sub" x="44" y="398">On every push and pull request to main</text>
+
+  <rect class="chip" x="44" y="408" width="140" height="30" rx="15"/>
+  <text class="label" x="114" y="428" text-anchor="middle">ruff lint</text>
+  <rect class="chip" x="196" y="408" width="190" height="30" rx="15"/>
+  <text class="label" x="291" y="428" text-anchor="middle">dbt parse + sqlfluff</text>
+  <rect class="chip" x="398" y="408" width="120" height="30" rx="15"/>
+  <text class="label" x="458" y="428" text-anchor="middle">docker build</text>
+  <rect class="chip" x="545" y="408" width="190" height="30" rx="15"/>
+  <text class="label" x="640" y="428" text-anchor="middle">publish image to GHCR</text>
+  <line class="flow" x1="518" y1="423" x2="543" y2="423" marker-end="url(#arrow)"/>
+
+  <text class="label" x="755" y="398">Keyless GCP auth</text>
+  <text class="sub" x="755" y="416">Workload Identity Federation,</text>
+  <text class="sub" x="755" y="433">no service account keys</text>
+</svg>
