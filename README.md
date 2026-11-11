@@ -49,12 +49,12 @@ An end-to-end ELT pipeline that loads the European Central Bank's daily euro ref
 
 ## Design highlights
 
-- **Idempotent loads:** dlt merges rates on `(date, quote)`, so reruns and backfills update existing rows instead of duplicating them. dbt tests check this on every build: `unique` and `not_null` tests on the date-and-currency surrogate keys stop the pipeline if a duplicate ever gets through.
-- **Fail fast on stale data:** a `dbt source freshness` gate runs between ingest and transform, so the pipeline never rebuilds tables from outdated data.
-- **Complete calendar:** rates are spread across every calendar day, and each row records which rate it carried forward and from which date.
-- **Least-privilege security:** ingestion and transformation each run as their own service account, through impersonation. CI authenticates to GCP with Workload Identity Federation, so there are no stored keys.
-- **Safe development:** model changes can be built and tested without touching production. Manual dbt runs default to the `dev` target and write to `dev_trusted` and `dev_refined`. Only the scheduled Airflow run uses `prod`, which writes to `trusted` and `refined`, the datasets behind the dashboard. A custom `generate_schema_name` macro handles the routing.
-- **Reproducible runs:** one Docker image (built and published by CI) runs both dlt and dbt, locally and in Airflow.
+- **Medallion architecture:** `raw` → `trusted` → `refined` (bronze, silver, gold) separates landed data, cleaned data and analytics-ready tables.
+- **Idempotent loads:** dlt merges on `(date, quote)`, so reruns never duplicate rows, and dbt uniqueness tests catch any duplicate that gets through.
+- **Fail fast on stale data:** a source freshness check stops the run before transform if the data is outdated.
+- **Least-privilege security:** one service account each for ingestion and dbt, used through impersonation. CI authenticates with Workload Identity Federation, so no keys are stored.
+- **Safe development:** manual runs write to `dev_*` datasets, and only the scheduled run writes to the production datasets behind the dashboard.
+- **Reproducible runs:** one Docker image, built by CI, runs dlt and dbt both locally and in Airflow.
 
 ## Project structure
 
