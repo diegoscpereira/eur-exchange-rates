@@ -1,6 +1,6 @@
 sources:
   - name: frankfurter_api
-    database: eur-exchange-rates
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
     schema: raw
     loader: dlt
 
